@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2013 Alien Laboratories, Inc. -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <!--
+    Android app.
+    -->
+  <name>Android</name>
+  <artifactId>android</artifactId>
+  <version>0.1-SNAPSHOT</version>
+  <packaging>apk</packaging>
+
+  <!-- TODO(burdon): Rename config? -->
+  <parent>
+    <groupId>com.alienlaboratories</groupId>
+    <artifactId>common</artifactId>
+    <relativePath>../common</relativePath>
+    <version>0.1-SNAPSHOT</version>
+  </parent>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>com.alienlaboratories</groupId>
+      <artifactId>core</artifactId>
+      <version>${project.version}</version>
+      <classifier>android</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>net.sourceforge.findbugs</groupId>
+      <artifactId>jsr305</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.android</groupId>
+      <artifactId>android</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.android</groupId>
+      <artifactId>support-v4</artifactId>
+    </dependency>
+
+    <!--
+    <dependency>
+      <groupId>com.google.inject</groupId>
+      <artifactId>guice</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.inject.extensions</groupId>
+      <artifactId>guice-multibindings</artifactId>
+    </dependency>
+    -->
+
+  </dependencies>
+
+  <build>
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-toolchains-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+            <goals>
+              <goal>toolchain</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <toolchains>
+            <jdk>
+              <platform>android</platform>
+            </jdk>
+          </toolchains>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>com.google.protobuf.tools</groupId>
+        <artifactId>maven-protoc-plugin</artifactId>
+      </plugin>
+
+      <!--
+        Android
+        http://developer.android.com/tools/device.html
+        http://code.google.com/p/maven-android-plugin/wiki/ProGuard
+        mvn android:help -Dgoal=proguard -Ddetail=true
+        mvn install android:deploy
+        -->
+      <plugin>
+        <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+        <artifactId>android-maven-plugin</artifactId>
+        <configuration>
+          <!-- mvn package (triggers proguard). -->
+          <proguard>
+            <skip>false</skip>
+            <config>proguard.cfg</config>
+            <jvmArguments>
+              <jvmArgument>-Xms256m</jvmArgument>
+              <jvmArgument>-Xmx512m</jvmArgument>
+            </jvmArguments>
+          </proguard>
+
+          <!-- TODO(burdon): Move to base plugin config. -->
+          <sdk>
+            <path>${android.dir}</path>
+            <platform>${android.platform.level}</platform>
+          </sdk>
+
+          <androidManifestFile>${project.basedir}/AndroidManifest.xml</androidManifestFile>
+          <assetsDirectory>${project.basedir}/assets</assetsDirectory>
+          <resourceDirectory>${project.basedir}/res</resourceDirectory>
+          <nativeLibrariesDirectory>${project.basedir}/src/main/native</nativeLibrariesDirectory>
+
+          <undeployBeforeDeploy>true</undeployBeforeDeploy>
+        </configuration>
+        <extensions>true</extensions>
+      </plugin>
+
+    </plugins>
+  </build>
+</project>

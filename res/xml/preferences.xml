@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  http://developer.android.com/guide/topics/ui/settings.html
+  http://developer.android.com/reference/android/preference/PreferenceFragment.html
+  -->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <CheckBoxPreference
+      android:key="pref_debug"
+      android:title="@string/pref_debug"
+      android:summary="@string/pref_debug_summmary"
+      android:defaultValue="true"/>
+
+  <ListPreference
+      android:key="pref_account"
+      android:title="@string/pref_account"
+      android:dialogTitle="@string/pref_account"/>
+
+  <Preference
+      android:key="pref_reset"
+      android:title="@string/pref_reset"/>
+
+  <Preference
+    android:key="pref_test"
+    android:title="@string/pref_test"/>
+
+</PreferenceScreen>

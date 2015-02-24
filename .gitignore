@@ -1,0 +1,23 @@
+#
+# http://git-scm.com/docs/gitignore
+# git config --add core.excludesfile ~/projects/src/alienlaboratories/core/.gitignore
+#
+
+.classpath
+.DS_Store
+.settings/
+.svn/
+
+dist/
+appengine-generated/
+datanucleus.log
+gwt-unitCache/
+node_modules/
+out/
+overlays/
+
+/target/
+/tools/
+
+*.pyc
+
