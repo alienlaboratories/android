@@ -11,6 +11,7 @@
 dist/
 appengine-generated/
 datanucleus.log
+gen/
 gwt-unitCache/
 node_modules/
 out/
