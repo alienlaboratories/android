@@ -27,8 +27,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="android" target="1.6" />
-      <module name="core" target="1.6" />
+      <module name="android" target="1.7" />
+      <module name="common" target="1.7" />
+      <module name="core" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

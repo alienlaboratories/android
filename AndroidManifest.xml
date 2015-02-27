@@ -29,9 +29,25 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
 
+    </activity>
+
+    <!-- Search -->
+    <activity
+        android:name=".SearchActivity"
+        android:parentActivityName=".MainActivity">
+
+      <intent-filter>
+        <action android:name="android.intent.action.SEARCH"/>
+      </intent-filter>
+
       <!-- http://developer.android.com/training/search/setup.html -->
       <meta-data android:name="android.app.searchable" android:resource="@xml/searchable"/>
     </activity>
+
+    <!-- Debug -->
+    <activity
+        android:name=".DebugActivity"
+        android:parentActivityName=".MainActivity"/>
 
     <!-- Settings -->
     <activity
@@ -42,14 +58,6 @@
     <activity
         android:name=".AuthActivity"
         android:parentActivityName=".SettingsActivity"/>
-
-    <!-- Search -->
-    <activity
-        android:name=".SearchActivity">
-      <intent-filter>
-        <action android:name="android.intent.action.SEARCH"/>
-      </intent-filter>
-    </activity>
 
   </application>
 

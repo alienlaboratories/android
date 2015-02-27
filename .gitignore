@@ -1,6 +1,6 @@
 #
 # http://git-scm.com/docs/gitignore
-# git config --add core.excludesfile ~/projects/src/alienlaboratories/core/.gitignore
+# git config --add core.excludesfile ~/projects/src/alienlaboratories/common/.gitignore
 #
 
 .classpath
@@ -21,4 +21,3 @@ overlays/
 /tools/
 
 *.pyc
-

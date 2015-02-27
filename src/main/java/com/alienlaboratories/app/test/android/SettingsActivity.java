@@ -15,7 +15,7 @@ public final class SettingsActivity extends Activity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    // Display the fragment as the main content.
+    // Display the fragment as the activity_main content.
     getFragmentManager().beginTransaction()
         .replace(android.R.id.content, new SettingsFragment())
         .commit();

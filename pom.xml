@@ -15,7 +15,6 @@
   <version>0.1-SNAPSHOT</version>
   <packaging>apk</packaging>
 
-  <!-- TODO(burdon): Rename config? -->
   <parent>
     <groupId>com.alienlaboratories</groupId>
     <artifactId>common</artifactId>
@@ -41,15 +40,6 @@
       <artifactId>guava</artifactId>
     </dependency>
 
-    <dependency>
-      <groupId>com.google.android</groupId>
-      <artifactId>android</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.google.android</groupId>
-      <artifactId>support-v4</artifactId>
-    </dependency>
-
     <!--
     <dependency>
       <groupId>com.google.inject</groupId>
@@ -61,30 +51,24 @@
     </dependency>
     -->
 
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>android</groupId>
+      <artifactId>android</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.android.support</groupId>
+      <artifactId>support-v4</artifactId>
+    </dependency>
+
   </dependencies>
 
   <build>
     <plugins>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-toolchains-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>validate</phase>
-            <goals>
-              <goal>toolchain</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <toolchains>
-            <jdk>
-              <version>1.6</version>
-            </jdk>
-          </toolchains>
-        </configuration>
-      </plugin>
 
       <plugin>
         <groupId>com.google.protobuf.tools</groupId>
