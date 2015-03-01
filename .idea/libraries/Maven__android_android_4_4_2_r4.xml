@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: android:android:4.4.2_r4">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/android/android/4.4.2_r4/android-4.4.2_r4.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/android/android/4.4.2_r4/android-4.4.2_r4-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/android/android/4.4.2_r4/android-4.4.2_r4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

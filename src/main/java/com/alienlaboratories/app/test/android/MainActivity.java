@@ -5,7 +5,6 @@ package com.alienlaboratories.app.test.android;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.ListFragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
@@ -14,10 +13,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import javax.annotation.Nullable;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Main activity.
@@ -34,13 +29,25 @@ public final class MainActivity extends Activity {
   private ListView drawerList;
 
   // http://developer.android.com/guide/components/fragments.html
-
   public static class ListViewFragment extends ListFragment {
 
+    // TODO(burdon): Dummy data. Set model which should be configured to use proxy.
+    // setItems(new ArrayList<String>(Lists.newArrayList("A", "B", "C")));
+    /*
+    getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      @Override
+      public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Log.d(LOG, "Item: " + i);
+      }
+    });
+    */
   }
 
-  static final String[] VIEWS = {"A", "B", "C"};
+  private static final String[] VIEWS = {"A", "B", "C"};
 
+  /**
+   * Nav drawer selection handler.
+   */
   // TODO(burdon): Create list fragment, debug fragment, etc.
   // https://developer.android.com/training/implementing-navigation/nav-drawer.html
   private class DrawerItemClickListener implements ListView.OnItemClickListener {
@@ -50,12 +57,15 @@ public final class MainActivity extends Activity {
       selectNavItem(position);
     }
 
-    /** Swaps fragments in the main content view */
+    /**
+     * Swaps fragments in the main content view.
+     */
     private void selectNavItem(int position) {
+
       // Create a new fragment and specify the planet to show based on position.
       Fragment fragment = new ListViewFragment();
       Bundle args = new Bundle();
-      args.putInt("key", position);
+      args.putInt("key", position);   // TODO(burdon): Const.
       fragment.setArguments(args);
 
       // Insert the fragment by replacing any existing fragment.
@@ -64,7 +74,7 @@ public final class MainActivity extends Activity {
           .replace(R.id.content_frame, fragment)
           .commit();
 
-      // Highlight the selected item, update the title, and close the drawer
+      // Highlight the selected item, update the title, and close the drawer.
       drawerList.setItemChecked(position, true);
       setTitle(VIEWS[position]);
       drawerLayout.closeDrawer(drawerList);
@@ -82,26 +92,14 @@ public final class MainActivity extends Activity {
     // Prefs.
 //  PreferenceManager.setDefaultValues(this, R.xml.advanced_preferences, false);
 
-    // TODO(burdon): Configure navigation drawer
+    // Initialize the nav drawer.
     // https://developer.android.com/design/patterns/navigation-drawer.html
     // https://developer.android.com/training/implementing-navigation/nav-drawer.html
     viewTitles = getResources().getStringArray(R.array.views);
     drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
     drawerList = (ListView) findViewById(R.id.left_drawer);
-    drawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, viewTitles));
+    drawerList.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, viewTitles));
     drawerList.setOnItemClickListener(new DrawerItemClickListener());
-
-    // TODO(burdon): Dummy data. Set model which should be configured to use proxy.
-    // setItems(new ArrayList<String>(Lists.newArrayList("A", "B", "C")));
-    // TODO(burdon): Move to ListFragment
-    /*
-    getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
-      @Override
-      public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Log.d(LOG, "Item: " + i);
-      }
-    });
-    */
   }
 
   @Override
@@ -121,30 +119,30 @@ public final class MainActivity extends Activity {
     switch (item.getItemId()) {
 
       // NOTE: Intent.ACTION_SEARCH could be handled by other apps.
-      case R.id.action_search:
-        startActivity(new Intent(this, SearchActivity.class));
-        return true;
-
-      case R.id.action_debug:
-        startActivity(new Intent(this, DebugActivity.class));
-        return true;
-
-      case R.id.action_settings:
-        startActivity(new Intent(this, SettingsActivity.class));
-        return true;
+//      case R.id.action_search:
+//        startActivity(new Intent(this, SearchActivity.class));
+//        return true;
+//
+//      case R.id.action_debug:
+//        startActivity(new Intent(this, DebugActivity.class));
+//        return true;
+//
+//      case R.id.action_settings:
+//        startActivity(new Intent(this, SettingsActivity.class));
+//        return true;
 
       default:
         return super.onOptionsItemSelected(item);
     }
   }
 
-  // TODO(burdon): Move to ListFragment
-  @SuppressWarnings("unchecked")
-  protected void setItems(@Nullable List<String> items) {
-    if (items == null) {
-      items = Collections.EMPTY_LIST;
-    }
-
-    //setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items));
-  }
+  // TODO(burdon): Move to ListFragment.
+//  @SuppressWarnings("unchecked")
+//  protected void setItems(@Nullable List<String> items) {
+//    if (items == null) {
+//      items = Collections.EMPTY_LIST;
+//    }
+//
+//    setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items));
+//  }
 }

@@ -12,6 +12,7 @@ dist/
 appengine-generated/
 datanucleus.log
 gen/
+gen-external-apklibs/
 gwt-unitCache/
 node_modules/
 out/
